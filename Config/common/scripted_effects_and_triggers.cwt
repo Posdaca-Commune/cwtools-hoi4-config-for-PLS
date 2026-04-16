@@ -1,0 +1,19 @@
+
+types = {
+	## unique = yes
+	type[scripted_trigger] = {
+		path = "game/common/scripted_triggers"
+	}
+	## unique = yes
+	type[scripted_effect] = {
+		path = "game/common/scripted_effects"
+	}
+}
+
+scripted_trigger = {
+	alias_name[trigger] = alias_match_left[trigger]
+}
+
+scripted_effect = {
+	alias_name[effect] = alias_match_left[effect]
+}

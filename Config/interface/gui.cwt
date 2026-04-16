@@ -741,9 +741,7 @@ alias[gui_image:centerposition] = bool
 
 #GUI Localization
 alias[gui_localization:pdx_tooltip] = localisation
-#alias[gui_localization:pdx_tooltip] = localisation_inline
 alias[gui_localization:pdx_tooltip_delayed] = localisation
-#alias[gui_localization:pdx_tooltip_delayed] = localisation_inline
 alias[gui_localization:pdx_tooltip_anchor] = {
     ## cardinality = 0..1
     x = int
@@ -757,7 +755,6 @@ alias[gui_localization:pdx_tooltip_anchor] = {
 }
 ### PDX function, use pdx_tooltip instead
 alias[gui_localization:tooltip] = localisation
-#alias[gui_localization:tooltip] = localisation_inline
 ### Text ontop of elements
 alias[gui_localization:text] = localisation
 alias[gui_localization:text] = localisation_inline
@@ -840,12 +837,12 @@ alias[gui_animation:fade_delay] = float
 alias[gui_animation:moveable] = bool
 
 # GUI Sound
-alias[gui_sound:upsound] = <soundeffect>
-alias[gui_sound:downsound] = <soundeffect>
+alias[gui_sound:upsound] = <sound>
+alias[gui_sound:downsound] = <sound>
 alias[gui_sound:show_sound] = <soundeffect>
-alias[gui_sound:hide_sound] = <soundeffect>
-alias[gui_sound:clicksound] = <soundeffect>
-alias[gui_sound:oversound] = <soundeffect>
+alias[gui_sound:hide_sound] = <sound>
+alias[gui_sound:clicksound] = <sound>
+alias[gui_sound:oversound] = <sound>
 
 enums = {
     enum[animationType] = {

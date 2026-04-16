@@ -1,249 +1,249 @@
 types = {
-	type[sprite] = {
-		path_pattern = "interface/**/*.gfx"
-		path_pattern = "dlc/*/interface/**/*.gfx"
-		path_pattern = "integrated_dlc/*/interface/**/*.gfx"
+    type[sprite] = {
+        path_pattern = "interface/**/*.gfx"
+        path_pattern = "dlc/*/interface/**/*.gfx"
+        path_pattern = "integrated_dlc/*/interface/**/*.gfx"
 
-		skip_root_key = spriteTypes
-		name_field = "name"
+        skip_root_key = spriteTypes
+        name_field = "name"
 
-		## type_key_filter = spriteType
-		subtype[normal] = { }
-		## type_key_filter = frameAnimatedSpriteType
-		subtype[frame_animated_sprite] = { }
-		## type_key_filter = corneredTileSpriteType
-		subtype[cornered_tile_sprite] = { }
-		## type_key_filter = maskedShieldType
-		subtype[masked_shield] = { }
-		## type_key_filter = textSpriteType
-		subtype[text_sprite] = { }
-		## type_key_filter = progressbartype
-		subtype[progressbar] = { }
-		## type_key_filter = circularProgressBarType
-		subtype[circular_progressbar] = { }
-		## type_key_filter = pieChartType
-		subtype[pie_chart] = { }
-		## type_key_filter = LineChartType
-		subtype[line_chart] = { }
+        ## type_key_filter = spriteType
+        subtype[normal] = { }
+        ## type_key_filter = frameAnimatedSpriteType
+        subtype[frame_animated_sprite] = { }
+        ## type_key_filter = corneredTileSpriteType
+        subtype[cornered_tile_sprite] = { }
+        ## type_key_filter = maskedShieldType
+        subtype[masked_shield] = { }
+        ## type_key_filter = textSpriteType
+        subtype[text_sprite] = { }
+        ## type_key_filter = progressbartype
+        subtype[progressbar] = { }
+        ## type_key_filter = circularProgressBarType
+        subtype[circular_progressbar] = { }
+        ## type_key_filter = pieChartType
+        subtype[pie_chart] = { }
+        ## type_key_filter = LineChartType
+        subtype[line_chart] = { }
 
-		images = {
-			subtype[!masked_shield&!progressbar&!circular_progressbar&!pie_chart] = {
-				## primary
-				texture = textureFile # filepath
-				## primary
-				texture = sprite_sheet_sprite_type|default_frame # <sprite>
-			}
-			subtype[masked_shield] = {
-				textureFile1 = textureFile1 # filepath
-				textureFile2 = textureFile2 # filepath
-			}
-			subtype[progressbar] = {
-				textureFile1 = textureFile1 # filepath
-				textureFile2 = textureFile2 # filepath
-			}
-			subtype[circular_progressbar] = {
-				textureFile1 = textureFile1 # filepath
-				textureFile2 = textureFile2 # filepath
-			}
-		}
-	}
-	type[bitmapfonts] = {
-		path = "game/interface"
-		skip_root_key = bitmapfonts
-		path_extension = .gfx
-		name_field = "name"
-		## type_key_filter = bitmapfont
-		subtype[bitmapfont] = { }
-		## type_key_filter = bitmapfont_override
-		subtype[bitmapfont_override] = { }
-		## type_key_filter = textcolors
-		subtype[textcolors] = { }
-	}
+        images = {
+            subtype[!masked_shield&!progressbar&!circular_progressbar&!pie_chart] = {
+                ## primary
+                texture = textureFile # filepath
+                ## primary
+                texture = sprite_sheet_sprite_type|default_frame # <sprite>
+            }
+            subtype[masked_shield] = {
+                textureFile1 = textureFile1 # filepath
+                textureFile2 = textureFile2 # filepath
+            }
+            subtype[progressbar] = {
+                textureFile1 = textureFile1 # filepath
+                textureFile2 = textureFile2 # filepath
+            }
+            subtype[circular_progressbar] = {
+                textureFile1 = textureFile1 # filepath
+                textureFile2 = textureFile2 # filepath
+            }
+        }
+    }
+    type[bitmapfonts] = {
+        path = "game/interface"
+        skip_root_key = bitmapfonts
+        path_extension = .gfx
+        name_field = "name"
+        ## type_key_filter = bitmapfont
+        subtype[bitmapfont] = { }
+        ## type_key_filter = bitmapfont_override
+        subtype[bitmapfont_override] = { }
+        ## type_key_filter = textcolors
+        subtype[textcolors] = { }
+    }
 }
 
 sprite = {
-	name = scalar
-	## cardinality = 0..1
-	effectFile = scalar
-	## cardinality = 0..1
-	noOfFrames = int
-	## cardinality = 0..1
-	animation_rate_fps = float
-	## cardinality = 0..1
-	looping = bool
-	## cardinality = 0..1
-	play_on_show = bool
-	## cardinality = 0..inf
-	animation = {
-		## cardinality = 0..1
-		animationmaskfile = scalar
-		## cardinality = 0..1
-		animationtextureFile = scalar
-		## cardinality = 0..1
-		animationrotation = float
-		## cardinality = 0..1
-		animationlooping = bool
-		## cardinality = 0..1
-		animationtime = float
-		## cardinality = 0..1
-		animationdelay = float
-		## cardinality = 0..1
-		animationtype = scalar
-		## cardinality = 0..1
-		animationblendmode = scalar
-		## cardinality = 0..1
-		animationrotationoffset = { x = float y = float }
-		## cardinality = 0..1
-		animationtexturescale = { x = float y = float }
-		## cardinality = 0..1
-		animationframes = {
-			## cardinality = 1..inf
-			int
-		}
-	}
-	## cardinality = 0..1
-	loadType = scalar
-	## cardinality = 0..1
-	transparencecheck = bool
-	## cardinality = 0..1
-	legacy_lazy_load = bool
-	## cardinality = 0..1
-	pause_on_loop = float
-	## cardinality = 0..1
-	alwaystransparent = bool
-	## cardinality = 0..1
-	generate_mip_maps = bool
-	subtype[normal] = {
-		## file_extensions = { .png .dds .tga }
-		textureFile = filepath
-		clicksound = <soundeffect>
-		clicksound = click
-	}
-	subtype[frame_animated_sprite] = {
-		## file_extensions = { .png .dds .tga }
-		textureFile = filepath
-	}
-	subtype[cornered_tile_sprite] = {
-		## file_extensions = { .png .dds .tga }
-		textureFile = filepath
-		borderSize = single_alias_right[gui_size_coordinates]
-		## cardinality = 0..1
-		tilingCenter = bool
-		size = single_alias_right[gui_size_coordinates]
-		## cardinality = 0..1
-		animation_rate_spf = int
-		## cardinality = 0..1
-		allwaystransparent = bool
-	}
-	subtype[masked_shield] = {
-		textureFile1 = scalar
-		textureFile2 = scalar
-	}
-	subtype[text_sprite] = {
-		## file_extensions = { .png .dds .tga }
-		textureFile = filepath
-		## cardinality = 0..1
-		clicksound = <soundeffect>
-		## cardinality = 0..1
-		clicksound = click
-	}
-	subtype[progressbar] = {
-		textureFile1 = scalar
-		textureFile2 = scalar
-		size = { x = float y = float }
-		horizontal = bool
-		## color_type = hsv
-		color = {
-			## cardinality = 3..3
-			float
-		}
-		## color_type = hsv
-		colortwo = {
-			## cardinality = 3..3
-			float
-		}
-		steps = int
-	}
-	subtype[circular_progressbar] = {
-		textureFile1 = scalar
-		textureFile2 = scalar
-		size = int
-		rotation = int
-		amount = int
-	}
-	subtype[pie_chart] = {
-		size = int
-	}
-	subtype[line_chart] = {
-		size = { x = int y = int }
-		linewidth = float
-	}
+    name = scalar
+    ## cardinality = 0..1
+    effectFile = scalar
+    ## cardinality = 0..1
+    noOfFrames = int
+    ## cardinality = 0..1
+    animation_rate_fps = float
+    ## cardinality = 0..1
+    looping = bool
+    ## cardinality = 0..1
+    play_on_show = bool
+    ## cardinality = 0..inf
+    animation = {
+        ## cardinality = 0..1
+        animationmaskfile = scalar
+        ## cardinality = 0..1
+        animationtextureFile = scalar
+        ## cardinality = 0..1
+        animationrotation = float
+        ## cardinality = 0..1
+        animationlooping = bool
+        ## cardinality = 0..1
+        animationtime = float
+        ## cardinality = 0..1
+        animationdelay = float
+        ## cardinality = 0..1
+        animationtype = scalar
+        ## cardinality = 0..1
+        animationblendmode = scalar
+        ## cardinality = 0..1
+        animationrotationoffset = { x = float y = float }
+        ## cardinality = 0..1
+        animationtexturescale = { x = float y = float }
+        ## cardinality = 0..1
+        animationframes = {
+            ## cardinality = 1..inf
+            int
+        }
+    }
+    ## cardinality = 0..1
+    loadType = scalar
+    ## cardinality = 0..1
+    transparencecheck = bool
+    ## cardinality = 0..1
+    legacy_lazy_load = bool
+    ## cardinality = 0..1
+    pause_on_loop = float
+    ## cardinality = 0..1
+    alwaystransparent = bool
+    ## cardinality = 0..1
+    generate_mip_maps = bool
+    subtype[normal] = {
+        ## file_extensions = { .png .dds .tga }
+        textureFile = filepath
+        clicksound = <soundeffect>
+        clicksound = click
+    }
+    subtype[frame_animated_sprite] = {
+        ## file_extensions = { .png .dds .tga }
+        textureFile = filepath
+    }
+    subtype[cornered_tile_sprite] = {
+        ## file_extensions = { .png .dds .tga }
+        textureFile = filepath
+        borderSize = single_alias_right[gui_size_coordinates]
+        ## cardinality = 0..1
+        tilingCenter = bool
+        size = single_alias_right[gui_size_coordinates]
+        ## cardinality = 0..1
+        animation_rate_spf = int
+        ## cardinality = 0..1
+        allwaystransparent = bool
+    }
+    subtype[masked_shield] = {
+        textureFile1 = scalar
+        textureFile2 = scalar
+    }
+    subtype[text_sprite] = {
+        ## file_extensions = { .png .dds .tga }
+        textureFile = filepath
+        ## cardinality = 0..1
+        clicksound = <soundeffect>
+        ## cardinality = 0..1
+        clicksound = click
+    }
+    subtype[progressbar] = {
+        textureFile1 = scalar
+        textureFile2 = scalar
+        size = { x = float y = float }
+        horizontal = bool
+        ## color_type = hsv
+        color = {
+            ## cardinality = 3..3
+            float
+        }
+        ## color_type = hsv
+        colortwo = {
+            ## cardinality = 3..3
+            float
+        }
+        steps = int
+    }
+    subtype[circular_progressbar] = {
+        textureFile1 = scalar
+        textureFile2 = scalar
+        size = int
+        rotation = int
+        amount = int
+    }
+    subtype[pie_chart] = {
+        size = int
+    }
+    subtype[line_chart] = {
+        size = { x = int y = int }
+        linewidth = float
+    }
 }
 
 bitmapfonts = {
-	### Global text colors used in the entire game, for use in loc files ex: "§G Text Text§!"
-	subtype[textcolors] = {
-		## cardinality = 1..inf
-		scalar = {
-			## cardinality = 3..3
-			float
-		}
-	}
-	subtype[bitmapfont] = {
-		name = value_set[font_name]
-		## cardinality = 0..1
-		path = scalar
-		## cardinality = 0..1
-		fontfiles = {
-			## cardinality = 1..inf
-			scalar
-		}
-		color = scalar
-		## cardinality = 0..1
-		textcolors = {
-			## cardinality = 1..inf
-			scalar = {
-				## cardinality = 3..3
-				float
-			}
-		}
-		## cardinality = 0..1
-		border_color = scalar
-		## cardinality = 0..1
-		cursor_offset = {
-			## cardinality = 2..2
-			float
-		}
-	}
-	subtype[bitmapfont_override] = {
-		name = value[font_name]
-		## cardinality = 0..1
-		path = scalar
-		## cardinality = 0..1
-		fontfiles = {
-			## cardinality = 1..inf
-			scalar
-		}
-		color = scalar
-		## cardinality = 0..1
-		textcolors = {
-			## cardinality = 1..inf
-			scalar = {
-				## cardinality = 3..3
-				float
-			}
-		}
-		## cardinality = 0..1
-		border_color = scalar
-		## cardinality = 0..1
-		languages = {
-			## cardinality = 1..inf
-			scalar
-		}
-		## cardinality = 0..1
-		cursor_offset = {
-			## cardinality = 2..2
-			float
-		}
-	}
+    ### Global text colors used in the entire game, for use in loc files ex: "§G Text Text§!"
+    subtype[textcolors] = {
+        ## cardinality = 1..inf
+        scalar = {
+            ## cardinality = 3..3
+            float
+        }
+    }
+    subtype[bitmapfont] = {
+        name = value_set[font_name]
+        ## cardinality = 0..1
+        path = scalar
+        ## cardinality = 0..1
+        fontfiles = {
+            ## cardinality = 1..inf
+            scalar
+        }
+        color = scalar
+        ## cardinality = 0..1
+        textcolors = {
+            ## cardinality = 1..inf
+            scalar = {
+                ## cardinality = 3..3
+                float
+            }
+        }
+        ## cardinality = 0..1
+        border_color = scalar
+        ## cardinality = 0..1
+        cursor_offset = {
+            ## cardinality = 2..2
+            float
+        }
+    }
+    subtype[bitmapfont_override] = {
+        name = value[font_name]
+        ## cardinality = 0..1
+        path = scalar
+        ## cardinality = 0..1
+        fontfiles = {
+            ## cardinality = 1..inf
+            scalar
+        }
+        color = scalar
+        ## cardinality = 0..1
+        textcolors = {
+            ## cardinality = 1..inf
+            scalar = {
+                ## cardinality = 3..3
+                float
+            }
+        }
+        ## cardinality = 0..1
+        border_color = scalar
+        ## cardinality = 0..1
+        languages = {
+            ## cardinality = 1..inf
+            scalar
+        }
+        ## cardinality = 0..1
+        cursor_offset = {
+            ## cardinality = 2..2
+            float
+        }
+    }
 }
