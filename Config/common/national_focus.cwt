@@ -22,14 +22,6 @@ types = {
 
 	## unique = yes
 	## type_key_filter = focus
-	type[focus] = {
-		path = "game/common/national_focus"
-		skip_root_key = focus_tree
-		name_field = "id"
-	}
-
-	## unique = yes
-	## type_key_filter = focus
 	type[continous_focus] = {
 		path = "game/common/continuous_focus"
 		skip_root_key = continuous_focus_palette
@@ -44,23 +36,21 @@ types = {
 
 		## only_if_not = { joint_focus }
 		## type_key_filter = shared_focus
-		subtype[shared] = {}
+		subtype[shared] = {
+		}
 
 		## only_if_not = { shared_focus }
 		## type_key_filter = joint_focus
-		subtype[joint_focus] = {}
-
-		images = {
-			## optional
-			icon = icon # <sprite>
+		subtype[joint_focus] = {
 		}
+
 	}
-}
 
 	## type_key_filter = search_filter_prios
 	type[search_filter_prios] = {
 		path = "game/common/national_focus"
 	}
+}
 
 focus_tree = {
 	id = localisation
@@ -90,8 +80,6 @@ focus_tree = {
 	shortcut = {
 		name = localisation
 		target = <focus>
-		### Optional parameter, if left unset will use existing zoomlevel. Warning: there's no good way for this to respect client resolution.
-		## cardinality = 0..1
 		scroll_wheel_factor = float
 		## cardinality = 0..1
 		trigger = {
@@ -106,20 +94,12 @@ focus_tree = {
 			x = int
 			y = int
 		}
-		## cardinality = 0..inf
-		override_position = {
-			x = int
-			y = int
-			trigger = {
-				alias_name[trigger] = alias_match_left[trigger]
-			}
-		}
 	}
 
 	## cardinality = 0..1
 	initial_show_position = {
 		## cardinality = 0..1
-		focus = <focus>
+		focus = enum[focus_id]
 
 		## cardinality = 0..1
 		focus = <shared_focus>
@@ -143,249 +123,18 @@ focus_tree = {
 		}
 	}
 
-	### See vanilla GER for examples
-	## cardinality = 0..1
-	alternate_icon_set = localisation
-
-	#### FYI - this can report missing 'text' field. This is a ghost error, caused by other errors/notifications in focus code. Fix them, and this 'text' error will disappear
 	## cardinality = 0..inf
 	focus = {
-		## cardinality = ~1..1
 		id = localisation
 
-		## cardinality = ~1..inf
-		icon = <spriteType>
-
 		## cardinality = 0..1
-		text_icon = <focus_style>
-
-		## cardinality = 0..1
-		overlay = <spriteType>
-
-		## cardinality = 0..1
-		alternate_icon = <spriteType>
-
-		## cardinality = ~1..inf
-		icon = {
-			## cardinality = 0..1
-			## replace_scope = { root = country this = country }
-			trigger = {
-				## cardinality = ~1..inf
-				alias_name[trigger] = alias_match_left[trigger]
-			}
-
-			## cardinality = ~1..1
-			value = <spriteType>
-		}
-
-		### A cost of 1 represents a week by default. Decimals within cost are supported, and it will get rounded down to a whole day in the game. 
-		## severity = warning
-		cost = float
-
-		## severity = warning
-		x = float
-
-		## severity = warning
-		y = float
-
-		## cardinality = 0..inf
-		offset = {
-			## cardinality = 0..1
-			x = int
-			## cardinality = 0..1
-			y = int
-			## cardinality = 0..1
-			## replace_scope = { root = country this = country }
-			trigger = {
-				alias_name[trigger] = alias_match_left[trigger]
-			}
-		}
-
-		## cardinality = 0..1
-		relative_position_id = <focus>
-
-		## cardinality = 0..1
-		relative_position_id = <shared_focus>
-
-		### Used for focuses that can change title/desc.
-		## cardinality = 0..1
-		dynamic = yes
-		## error_if_only_match = This is the default value and can be ommitted
-		## severity = info
-		## cardinality = 0..1
-		dynamic = no
-
-		## cardinality = 0..1
-		available_if_capitulated = yes
-		## error_if_only_match = This is the default value and can be ommitted
-		## severity = info
-		## cardinality = 0..1
-		available_if_capitulated = no
-
-		## cardinality = 0..1
-		cancel_if_invalid = no
-		## error_if_only_match = This is the default value and can be ommitted
-		## severity = info
-		## cardinality = 0..1
-		cancel_if_invalid = yes
-
-		## cardinality = 0..1
-		continue_if_invalid = yes
-		## error_if_only_match = This is the default value and can be ommitted
-		## severity = info
-		## cardinality = 0..1
-		continue_if_invalid = no
-
-		## cardinality = 0..1
-		cancelable = no
-		## error_if_only_match = This is the default value and can be ommitted
-		## severity = info
-		## cardinality = 0..1
-		cancelable = yes
-
-		## cardinality = 0..1
-		bypass_if_unavailable = yes
-		## error_if_only_match = This is the default value and can be ommitted
-		## severity = info
-		## cardinality = 0..1
-		bypass_if_unavailable = no
-
-		## cardinality = 0..inf
-		will_lead_to_war_with = scope[country]
-
-		## cardinality = 0..inf
-		will_lead_to_war_with = enum[country_tags]
-
-		## cardinality = 0..inf
-		prerequisite = {
-			## cardinality = 0..inf
-			focus = <focus>
-
-			## cardinality = 0..inf
-			focus = <shared_focus>
-		}
-
-		## cardinality = 0..inf
-		mutually_exclusive = {
-			## cardinality = 0..inf
-			focus = <focus>
-
-			## cardinality = 0..inf
-			focus = <shared_focus>
-		}
-
-		## cardinality = 0..1
-		## replace_scope = { root = country this = country }
-		bypass = {
-			## cardinality = ~1..inf
-			alias_name[trigger] = alias_match_left[trigger]
-		}
-
-		## cardinality = 0..1
-		## replace_scope = { root = country this = country }
-		bypass_effect = {
-			## cardinality = ~1..inf
-			alias_name[effect] = alias_match_left[effect]
-		}
-
-		### Don't bypass focus automatically. Defaults to yes
-		## cardinality = 0..1
-		enable_automatic_bypass = bool
-
-		## cardinality = 0..1
-		## replace_scope = { root = country this = country }
-		allow_branch = {
-			## cardinality = ~1..inf
-			alias_name[trigger] = alias_match_left[trigger]
-		}
-
-		## cardinality = 0..1
-		## replace_scope = { root = country this = country }
-		available = {
-			## cardinality = ~1..inf
-			alias_name[trigger] = alias_match_left[trigger]
-		}
-
-		## cardinality = 0..1
-		## replace_scope = { root = country this = country }
-		cancel = {
-			## cardinality = ~1..inf
-			alias_name[trigger] = alias_match_left[trigger]
-		}
-
-		## cardinality = 0..1
-		historical_ai = {
-			## cardinality = ~1..inf
-			alias_name[trigger] = alias_match_left[trigger]
-		}
-
-		## cardinality = 0..1
-		## replace_scope = { root = country this = country }
-		select_effect = {
-			## cardinality = ~1..inf
-			alias_name[effect] = alias_match_left[effect]
-		}
-
-		## cardinality = 0..1
-		## replace_scope = { root = country this = country }
-		cancel_effect = {
-			## cardinality = ~1..inf
-			alias_name[effect] = alias_match_left[effect]
-		}
-
-		## cardinality = 0..1
-		## push_scope = any
-		complete_tooltip = {
-			## cardinality = ~1..inf
-			alias_name[effect] = alias_match_left[effect]
-		}
-
-		## cardinality = 0..1
-		## replace_scope = { root = country this = country }
-		on_uncomplete = {
-			## cardinality = ~1..inf
-			alias_name[effect] = alias_match_left[effect]
-		}
-
-		## cardinality = ~1..1
-		## replace_scope = { root = country this = country }
-		completion_reward = {
-			## cardinality = ~1..inf
-			alias_name[effect] = alias_match_left[effect]
-		}
-
-		## cardinality = 0..1
-		ai_will_do = {
-			## cardinality = 0..1
-			enum[base_factor] = float
-			alias_name[modifier_rule] = alias_match_left[modifier_rule]
-		}
-
-		## cardinality = 0..1
-		search_filters = {
-			## cardinality = ~1..inf
-			value_set[focus_filter]
-		}
-	}
-
-	## cardinality = 0..inf
-	focus = {
-		## cardinality = ~1..1
-		id = scalar
-		## cardinality = ~1..1
 		text = localisation
 
 		## cardinality = ~1..inf
-		icon = <spriteType>
+		icon = <sprite>
 
 		## cardinality = 0..1
 		text_icon = <focus_style>
-
-		## cardinality = 0..1
-		overlay = <spriteType>
-
-		## cardinality = 0..1
-		alternate_icon = <spriteType>
 
 		## cardinality = ~1..inf
 		icon = {
@@ -424,7 +173,7 @@ focus_tree = {
 		}
 
 		## cardinality = 0..1
-		relative_position_id = <focus>
+		relative_position_id = enum[focus_id]
 
 		## cardinality = 0..1
 		relative_position_id = <shared_focus>
@@ -476,12 +225,12 @@ focus_tree = {
 		will_lead_to_war_with = scope[country]
 
 		## cardinality = 0..inf
-		will_lead_to_war_with = enum[country_tags]
+		will_lead_to_war_with = enum[explicit_country_tags]
 
 		## cardinality = 0..inf
 		prerequisite = {
 			## cardinality = 0..inf
-			focus = <focus>
+			focus = enum[focus_id]
 
 			## cardinality = 0..inf
 			focus = <shared_focus>
@@ -490,7 +239,7 @@ focus_tree = {
 		## cardinality = 0..inf
 		mutually_exclusive = {
 			## cardinality = 0..inf
-			focus = <focus>
+			focus = enum[focus_id]
 
 			## cardinality = 0..inf
 			focus = <shared_focus>
@@ -502,17 +251,6 @@ focus_tree = {
 			## cardinality = ~1..inf
 			alias_name[trigger] = alias_match_left[trigger]
 		}
-
-		## cardinality = 0..1
-		## replace_scope = { root = country this = country }
-		bypass_effect = {
-			## cardinality = ~1..inf
-			alias_name[effect] = alias_match_left[effect]
-		}
-
-		### Don't bypass focus automatically. Defaults to yes
-		## cardinality = 0..1
-		enable_automatic_bypass = bool
 
 		## cardinality = 0..1
 		## replace_scope = { root = country this = country }
@@ -599,7 +337,7 @@ shared_focus = {
 	text = localisation
 
 	## cardinality = 0..inf
-	icon = <spriteType>
+	icon = <sprite>
 	## cardinality = 0..inf
 	icon = {
 		## cardinality = 0..1
@@ -684,7 +422,7 @@ shared_focus = {
 	will_lead_to_war_with = scope[country]
 
 	## cardinality = 0..inf
-	will_lead_to_war_with = enum[country_tags]
+	will_lead_to_war_with = enum[explicit_country_tags]
 
 	## cardinality = 0..inf
 	prerequisite = {
@@ -708,13 +446,6 @@ shared_focus = {
 	bypass = {
 		## cardinality = ~1..inf
 		alias_name[trigger] = alias_match_left[trigger]
-	}
-
-	## cardinality = 0..1
-	## replace_scope = { root = country this = country }
-	bypass_effect = {
-		## cardinality = ~1..inf
-		alias_name[effect] = alias_match_left[effect]
 	}
 
 	## cardinality = 0..1
@@ -842,7 +573,7 @@ continous_focus_tree = {
 		id = localisation
 
 		## cardinality = ~1..inf
-		icon = <spriteType>
+		icon = <sprite>
 
 		## cardinality = ~1..inf
 		icon = {
@@ -854,7 +585,7 @@ continous_focus_tree = {
 			}
 
 			## cardinality = ~1..1
-			value = <spriteType>
+			value = <sprite>
 		}
 
 		### The cost in daily political power gain to take this focus compared to not having any focus selected
@@ -928,16 +659,31 @@ style = {
 	default = no
 
 	## cardinality = 1..1
-	unavailable = <spriteType>
+	unavailable = <sprite>
 	## cardinality = 1..1
-	completed = <spriteType>
+	completed = <sprite>
 	## cardinality = 1..1
-	available = <spriteType>
+	available = <sprite>
 	## cardinality = 1..1
-	current = <spriteType>
+	current = <sprite>
 }
 
 search_filter_prios = {
 	## cardinality = 0..inf
 	value[focus_filter] = int
+}
+
+
+enums = {
+	complex_enum[focus_id] = {
+		path = "game/common/national_focus"
+		start_from_root = yes
+		name = {
+			focus_tree = {
+				focus = {
+					id = enum_name
+				}
+			}
+		}
+	}
 }
